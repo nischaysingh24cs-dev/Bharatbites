@@ -1,0 +1,121 @@
+import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowRight,
+  CalendarDays,
+  CheckCircle2,
+  Clock3,
+  Languages,
+  MapPin,
+  ShieldCheck,
+  Star
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SectionHeading } from "@/components/ui/section-heading";
+
+export function DoctorPreview() {
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="container-page grid items-center gap-12 lg:grid-cols-2">
+        <div className="relative mx-auto w-full max-w-[540px]">
+          <div className="relative h-[560px] overflow-hidden rounded-[30px]">
+            <Image
+              src="/images/doctor-placeholder.png"
+              alt="Homeopathy doctor profile placeholder"
+              fill
+              sizes="550px"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-950/75 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6 text-white">
+              <div className="flex items-center gap-1 text-xs font-semibold text-amber-300">
+                <Star className="size-3.5 fill-current" />
+                4.9 · Patient reviewed
+              </div>
+              <h3 className="mt-2 text-2xl font-bold">
+                Your doctor&apos;s name
+              </h3>
+              <p className="mt-1 text-xs text-white/65">
+                BHMS, MD (Hom.) · 25+ years of experience
+              </p>
+            </div>
+          </div>
+          <div className="glass absolute -right-3 top-8 rounded-2xl p-3 sm:-right-8">
+            <div className="flex items-center gap-2">
+              <span className="grid size-9 place-items-center rounded-xl bg-leaf-500/10 text-leaf-500">
+                <Clock3 className="size-4" />
+              </span>
+              <span>
+                <b className="block text-xs text-ink-950 dark:text-white">
+                  Next available
+                </b>
+                <small className="text-[9px] text-slate-500">
+                  Today · 5:30 PM
+                </small>
+              </span>
+            </div>
+          </div>
+          <div className="glass absolute -bottom-5 left-3 rounded-2xl p-3 sm:-left-7 sm:bottom-10">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="size-5 text-leaf-500" />
+              <span>
+                <b className="block text-xs text-ink-950 dark:text-white">
+                  Private &amp; personal
+                </b>
+                <small className="text-[9px] text-slate-500">
+                  In-clinic or video
+                </small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <SectionHeading
+            eyebrow="Care you can trust"
+            title="A healthier you deserves a human touch."
+            description="Connect with your family clinic for a thoughtful homeopathy consultation—online or in person. The profile is fully editable from the admin panel."
+          />
+          <div className="mt-7 grid gap-3 sm:grid-cols-2">
+            {[
+              [ShieldCheck, "Qualified care", "Verified profile & credentials"],
+              [CalendarDays, "Easy booking", "Pick a date and time"],
+              [Languages, "Your language", "English · हिंदी · ಕನ್ನಡ"],
+              [MapPin, "Visit or video", "Flexible consultations"]
+            ].map(([Icon, title, text]) => (
+              <div
+                key={title as string}
+                className="flex items-center gap-3 rounded-2xl border border-black/[0.07] p-3 dark:border-white/10"
+              >
+                <span className="grid size-10 place-items-center rounded-xl bg-leaf-500/10 text-leaf-500">
+                  <Icon className="size-4" />
+                </span>
+                <span>
+                  <b className="block text-xs">{title as string}</b>
+                  <small className="text-[10px] text-slate-500">
+                    {text as string}
+                  </small>
+                </span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/doctor">
+              <Button size="lg">
+                Book an appointment <ArrowRight className="size-4" />
+              </Button>
+            </Link>
+            <a href="tel:+910000000000">
+              <Button size="lg" variant="outline">
+                Call clinic
+              </Button>
+            </a>
+          </div>
+          <p className="mt-5 text-[10px] leading-4 text-slate-400">
+            For emergencies, contact local emergency services or visit the
+            nearest hospital. This service is not intended for emergency care.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

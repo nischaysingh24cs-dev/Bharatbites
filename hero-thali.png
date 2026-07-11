@@ -1,0 +1,78 @@
+import Link from "next/link";
+import { Instagram, Linkedin, Mail, Youtube } from "lucide-react";
+import { Logo } from "@/components/ui/logo";
+
+const footerLinks = {
+  Product: [
+    ["Explore foods", "/explore"],
+    ["Food tracker", "/tracker"],
+    ["AI diet planner", "/plan"],
+    ["Dashboard", "/dashboard"]
+  ],
+  Wellness: [
+    ["Exercise", "/exercise"],
+    ["BMI calculator", "/tracker#bmi"],
+    ["Water tracker", "/tracker#water"],
+    ["Consult a doctor", "/doctor"]
+  ],
+  Company: [
+    ["About BharatBites", "/#about"],
+    ["Health blog", "/doctor#blog"],
+    ["Privacy", "/privacy"],
+    ["Terms", "/terms"]
+  ]
+};
+
+export function Footer() {
+  return (
+    <footer className="border-t border-black/[0.06] bg-[#faf7f1] dark:border-white/10 dark:bg-[#050a07]">
+      <div className="mx-auto max-w-[1240px] px-4 py-14 sm:px-6">
+        <div className="grid gap-10 lg:grid-cols-[1.5fr_2fr]">
+          <div>
+            <Logo />
+            <p className="mt-4 max-w-sm text-sm leading-6 text-slate-600 dark:text-slate-400">
+              Track every bite, discover India&apos;s culinary heritage and
+              build healthier habits—without giving up the food you love.
+            </p>
+            <div className="mt-5 flex gap-2">
+              {[Instagram, Youtube, Linkedin, Mail].map((Icon, i) => (
+                <button
+                  key={i}
+                  className="grid size-9 place-items-center rounded-full border border-black/10 text-slate-500 transition hover:border-saffron-500 hover:text-saffron-500 dark:border-white/10"
+                  aria-label="Social link"
+                >
+                  <Icon className="size-4" />
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+            {Object.entries(footerLinks).map(([title, links]) => (
+              <div key={title}>
+                <h3 className="text-xs font-bold uppercase tracking-wider text-ink-950 dark:text-white">
+                  {title}
+                </h3>
+                <ul className="mt-4 space-y-3">
+                  {links.map(([label, href]) => (
+                    <li key={label}>
+                      <Link
+                        href={href}
+                        className="text-sm text-slate-600 hover:text-saffron-500 dark:text-slate-400"
+                      >
+                        {label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="mt-12 flex flex-col gap-3 border-t border-black/[0.07] pt-6 text-xs text-slate-500 dark:border-white/10 sm:flex-row sm:items-center sm:justify-between">
+          <p>© 2026 BharatBites. Made with care in India.</p>
+          <p>Nutrition estimates are educational—not medical advice.</p>
+        </div>
+      </div>
+    </footer>
+  );
+}

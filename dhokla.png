@@ -1,0 +1,166 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Flame,
+  Play,
+  Sparkles,
+  Users
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export function Hero() {
+  return (
+    <section className="noise relative overflow-hidden bg-hero-glow pb-16 pt-12 sm:pt-16 lg:min-h-[760px] lg:pb-24 lg:pt-20">
+      <div className="absolute -left-20 top-28 size-52 rounded-full bg-leaf-500/10 blur-3xl" />
+      <div className="container-page relative grid items-center gap-14 lg:grid-cols-[.9fr_1.1fr] lg:gap-8">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65 }}
+        >
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-saffron-500/20 bg-white/70 px-3 py-2 text-xs font-bold text-saffron-600 shadow-sm backdrop-blur dark:bg-white/5 dark:text-saffron-400">
+            <Sparkles className="size-3.5" />
+            Your food. Your culture. Your health.
+          </div>
+          <h1 className="max-w-xl text-balance font-display text-[44px] font-extrabold leading-[.99] tracking-[-.055em] text-ink-950 dark:text-white sm:text-6xl lg:text-[72px]">
+            Love Indian food.{" "}
+            <span className="relative text-saffron-500">
+              Live healthier.
+              <svg
+                className="absolute -bottom-2 left-0 h-3 w-full"
+                viewBox="0 0 300 12"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3 8.8C66 2 187 2 297 7"
+                  stroke="#00A86B"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  opacity=".75"
+                />
+              </svg>
+            </span>
+          </h1>
+          <p className="mt-7 max-w-xl text-pretty text-base leading-7 text-slate-600 dark:text-slate-300 sm:text-lg">
+            AI-powered nutrition that understands your dosa, dal and dadi&apos;s
+            recipes. Track every bite—without giving up the food you love.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/tracker">
+              <Button size="lg">
+                Start tracking free <ArrowRight className="size-4" />
+              </Button>
+            </Link>
+            <Link href="/explore">
+              <Button size="lg" variant="outline">
+                <Play className="size-4 fill-current" />
+                Explore 130+ dishes
+              </Button>
+            </Link>
+          </div>
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-xs font-medium text-slate-500 dark:text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="size-4 text-leaf-500" />
+              No restrictive diets
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="size-4 text-leaf-500" />
+              Kind AI guidance
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="size-4 text-leaf-500" />
+              Free to start
+            </span>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ delay: 0.15, duration: 0.75 }}
+          className="relative mx-auto w-full max-w-[670px] lg:ml-5"
+        >
+          <div className="absolute -inset-5 rounded-[42px] bg-gradient-to-br from-saffron-500/15 to-leaf-500/10 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[32px] border border-white/40 bg-ink-950 p-2 shadow-[0_35px_90px_-30px_rgba(8,16,12,.55)]">
+            <div className="relative h-[410px] overflow-hidden rounded-[25px] sm:h-[500px]">
+              <Image
+                src="/images/hero-thali.png"
+                alt="A colourful Indian thali with balanced dishes"
+                fill
+                priority
+                sizes="(max-width: 1024px) 90vw, 650px"
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                <div>
+                  <div className="mb-2 flex gap-1">
+                    <span className="rounded-full bg-leaf-500 px-2.5 py-1 text-[9px] font-bold uppercase text-white">
+                      Balanced
+                    </span>
+                    <span className="rounded-full bg-white/15 px-2.5 py-1 text-[9px] font-bold uppercase text-white backdrop-blur">
+                      Home style
+                    </span>
+                  </div>
+                  <p className="text-xs text-white/65">Today&apos;s plate</p>
+                  <p className="mt-1 font-display text-2xl font-bold text-white">
+                    The smart Indian thali
+                  </p>
+                </div>
+                <div className="grid size-14 place-items-center rounded-2xl bg-white text-center">
+                  <span>
+                    <b className="block text-sm text-ink-950">82</b>
+                    <small className="text-[8px] uppercase text-slate-400">
+                      score
+                    </small>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <motion.div
+            animate={{ y: [0, -9, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="glass absolute -left-2 top-7 flex items-center gap-3 rounded-2xl p-3 sm:-left-10 sm:top-14"
+          >
+            <span className="grid size-10 place-items-center rounded-xl bg-saffron-500/15">
+              <Flame className="size-5 text-saffron-500" />
+            </span>
+            <span>
+              <b className="block text-sm text-ink-950 dark:text-white">
+                1,460 kcal
+              </b>
+              <small className="text-[10px] text-slate-500">
+                of 2,050 today
+              </small>
+            </span>
+          </motion.div>
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+            className="glass absolute -bottom-8 right-1 rounded-2xl p-4 sm:-right-7 sm:bottom-10"
+          >
+            <div className="flex items-center gap-2">
+              <Users className="size-4 text-leaf-500" />
+              <span className="text-xs font-bold text-ink-950 dark:text-white">
+                12,486 meals
+              </span>
+            </div>
+            <p className="mt-1 text-[10px] text-slate-500">
+              tracked by India today
+            </p>
+            <div className="mt-2 h-1.5 w-28 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10">
+              <div className="h-full w-3/4 rounded-full bg-leaf-500" />
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

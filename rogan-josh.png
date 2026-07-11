@@ -1,0 +1,34 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { FoodCard } from "@/components/food-card";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { trendingFoods } from "@/data/foods";
+
+export function Trending() {
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="container-page">
+        <div className="flex items-end justify-between gap-4">
+          <SectionHeading
+            eyebrow="Taste of India"
+            title="Trending on plates today"
+            description="From crispy street-food favourites to nourishing classics, discover what India is enjoying."
+          />
+          <Link
+            href="/explore"
+            className="hidden items-center gap-1 text-sm font-bold text-saffron-600 hover:gap-2 sm:flex"
+          >
+            Explore all <ArrowRight className="size-4" />
+          </Link>
+        </div>
+        <div className="hide-scrollbar -mx-4 mt-10 flex snap-x gap-5 overflow-x-auto px-4 pb-8 sm:mx-0 sm:grid sm:grid-cols-2 sm:px-0 lg:grid-cols-4">
+          {trendingFoods.slice(0, 4).map((food) => (
+            <div key={food.id} className="min-w-[278px] snap-center sm:min-w-0">
+              <FoodCard food={food} compact />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

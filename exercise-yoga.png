@@ -1,0 +1,33 @@
+"use client";
+
+import Link from "next/link";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { UserRound } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export function AuthControl() {
+  const configured = Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY);
+  if (!configured) {
+    return (
+      <Link href="/sign-in" className="hidden sm:block">
+        <Button variant="outline" size="sm">
+          <UserRound className="size-3.5" /> Sign in
+        </Button>
+      </Link>
+    );
+  }
+  return (
+    <>
+      <SignedOut>
+        <Link href="/sign-in">
+          <Button variant="outline" size="sm">
+            Sign in
+          </Button>
+        </Link>
+      </SignedOut>
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
+    </>
+  );
+}

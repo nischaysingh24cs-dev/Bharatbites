@@ -1,0 +1,60 @@
+import Link from "next/link";
+import { ArrowRight, Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+export function FinalCta() {
+  return (
+    <section className="pb-20 sm:pb-28">
+      <div className="container-page">
+        <div className="noise relative overflow-hidden rounded-[32px] bg-gradient-to-br from-saffron-500 via-[#f87922] to-amber-400 px-6 py-14 text-center text-white shadow-glow sm:px-12 sm:py-16">
+          <div className="absolute -left-10 -top-10 size-40 rounded-full border-[24px] border-white/10" />
+          <div className="absolute -bottom-14 right-4 size-52 rounded-full border-[34px] border-leaf-500/20" />
+          <div className="relative mx-auto max-w-2xl">
+            <p className="text-xs font-bold uppercase tracking-[.2em] text-white/70">
+              Your next healthy choice starts here
+            </p>
+            <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-tight sm:text-5xl">
+              Eat the food you love. Feel better every day.
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-sm leading-6 text-white/80">
+              Join people across India building mindful, joyful habits—one bite,
+              one glass and one small win at a time.
+            </p>
+            <div className="mt-7 flex flex-wrap justify-center gap-3">
+              <Link href="/tracker">
+                <Button
+                  size="lg"
+                  className="bg-white text-saffron-600 shadow-xl hover:bg-white"
+                >
+                  Start tracking free <ArrowRight className="size-4" />
+                </Button>
+              </Link>
+              <Link href="/explore">
+                <Button
+                  size="lg"
+                  className="border border-white/30 bg-white/10 shadow-none hover:bg-white/20"
+                >
+                  Explore Indian food
+                </Button>
+              </Link>
+            </div>
+            <div className="mt-6 flex flex-wrap justify-center gap-4 text-[10px] text-white/75">
+              <span className="flex items-center gap-1">
+                <Check className="size-3" />
+                No credit card
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="size-3" />
+                Private by default
+              </span>
+              <span className="flex items-center gap-1">
+                <Check className="size-3" />
+                Cancel anytime
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

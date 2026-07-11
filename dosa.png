@@ -1,0 +1,139 @@
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import {
+  ArrowRight,
+  Beef,
+  Droplets,
+  Salad,
+  Sparkles,
+  Target
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SectionHeading } from "@/components/ui/section-heading";
+import { cn } from "@/lib/utils";
+
+const preferences = ["Vegetarian", "Non-Vegetarian", "Vegan", "Jain"];
+const meals = [
+  ["08:00", "Breakfast", "Moong dal chilla · Mint chutney · Fruit", "420 kcal"],
+  ["13:00", "Lunch", "Rajma · Brown rice · Kachumber", "610 kcal"],
+  ["16:30", "Snack", "Roasted chana · Buttermilk", "210 kcal"],
+  ["20:00", "Dinner", "Paneer tikka · Millet khichdi · Greens", "560 kcal"]
+];
+export function PlannerPreview() {
+  const [preference, setPreference] = useState("Vegetarian");
+  return (
+    <section className="py-20 sm:py-28">
+      <div className="container-page grid items-center gap-12 lg:grid-cols-[.78fr_1.22fr]">
+        <div>
+          <SectionHeading
+            eyebrow="Personalised to you"
+            title="An Indian meal plan that fits real life."
+            description="Tell us about your body, routine and goals. Get balanced options that respect your diet, culture and favourite flavours."
+          />
+          <div className="mt-6 flex flex-wrap gap-2">
+            {preferences.map((item) => (
+              <button
+                key={item}
+                onClick={() => setPreference(item)}
+                className={cn(
+                  "rounded-full border px-3 py-2 text-xs font-semibold transition",
+                  preference === item
+                    ? "border-leaf-500 bg-leaf-500 text-white"
+                    : "border-black/10 text-slate-500 hover:border-leaf-500 dark:border-white/10"
+                )}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          <Link href="/plan">
+            <Button className="mt-8">
+              Create my meal plan <ArrowRight className="size-4" />
+            </Button>
+          </Link>
+        </div>
+        <div className="relative">
+          <div className="absolute -inset-5 rounded-[36px] bg-gradient-to-br from-leaf-500/10 to-saffron-500/10 blur-xl" />
+          <div className="relative overflow-hidden rounded-[28px] border border-black/[0.07] bg-white shadow-soft dark:border-white/10 dark:bg-[#111a15]">
+            <div className="flex flex-col gap-4 border-b border-black/[0.06] bg-[#faf7f1] p-5 dark:border-white/10 dark:bg-white/[0.04] sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-[.16em] text-leaf-600">
+                  <Sparkles className="size-3" />
+                  AI meal plan
+                </div>
+                <h3 className="mt-1 text-lg font-bold text-ink-950 dark:text-white">
+                  Balanced &amp; energising
+                </h3>
+              </div>
+              <div className="flex gap-2">
+                <span className="rounded-xl bg-white px-3 py-2 text-center shadow-sm dark:bg-white/10">
+                  <b className="block text-xs">1,800</b>
+                  <small className="text-[8px] uppercase text-slate-400">
+                    kcal
+                  </small>
+                </span>
+                <span className="rounded-xl bg-white px-3 py-2 text-center shadow-sm dark:bg-white/10">
+                  <b className="block text-xs">92g</b>
+                  <small className="text-[8px] uppercase text-slate-400">
+                    protein
+                  </small>
+                </span>
+              </div>
+            </div>
+            <div className="p-5">
+              <div className="space-y-2">
+                {meals.map(([time, title, food, kcal], i) => (
+                  <div
+                    key={title}
+                    className="group grid grid-cols-[46px_36px_1fr_auto] items-center gap-3 rounded-2xl p-2.5 transition hover:bg-slate-50 dark:hover:bg-white/[0.05]"
+                  >
+                    <span className="text-[10px] text-slate-400">{time}</span>
+                    <span
+                      className={cn(
+                        "grid size-9 place-items-center rounded-xl",
+                        i % 2
+                          ? "bg-saffron-500/10 text-saffron-500"
+                          : "bg-leaf-500/10 text-leaf-500"
+                      )}
+                    >
+                      {i % 2 ? (
+                        <Beef className="size-4" />
+                      ) : (
+                        <Salad className="size-4" />
+                      )}
+                    </span>
+                    <div>
+                      <p className="text-xs font-bold text-ink-950 dark:text-white">
+                        {title}
+                      </p>
+                      <p className="mt-0.5 text-[10px] text-slate-500">
+                        {food}
+                      </p>
+                    </div>
+                    <span className="text-[10px] font-bold text-slate-400">
+                      {kcal}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                <div className="rounded-2xl bg-blue-50 p-3 dark:bg-blue-500/10">
+                  <Droplets className="size-4 text-blue-500" />
+                  <p className="mt-1 text-xs font-bold">2.5 L water</p>
+                  <p className="text-[9px] text-slate-500">Your daily target</p>
+                </div>
+                <div className="rounded-2xl bg-purple-50 p-3 dark:bg-purple-500/10">
+                  <Target className="size-4 text-purple-500" />
+                  <p className="mt-1 text-xs font-bold">Maintain weight</p>
+                  <p className="text-[9px] text-slate-500">Current focus</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
